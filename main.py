@@ -67,7 +67,7 @@ def main():
         for i in range(m):
             row = list(map(float, input(f"Row {i+1} (space separated): ").split()))
             A.append(row)
-            
+
         Q, R = qr_decomposition(A)
         Q = format_matrix(Q)
         R = format_matrix(R)
@@ -76,7 +76,17 @@ def main():
         print("R:")
         print_matrix(R)
     elif choice == "5":
-        coeffs = [1, -6, 15, -30, 44, -24]  # x^5 - 6x^4 + 15x^3 - 30x^2 + 44x - 24
+        n = int(input("Enter degree of polynomial: "))
+    
+        print(f"Enter {n+1} coefficients (highest degree → constant):")
+        print("Example: for x^3 - 6x^2 + 11x - 6 → 1 -6 11 -6")
+        
+        coeffs = list(map(float, input(">>> ").split()))
+
+        if len(coeffs) != n + 1:
+            print("Wrong number of coefficients")
+            return
+        # coeffs = [1, -6, 15, -30, 44, -24]  # x^5 - 6x^4 + 15x^3 - 30x^2 + 44x - 24
         roots = bairstow(coeffs[::-1])  # Reverse coefficients for bairstow
 
         print("\nAll roots:")
