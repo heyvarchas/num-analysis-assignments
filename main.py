@@ -19,11 +19,11 @@ def main():
     choice = input("Enter your choice: ")
 
     if choice == "1":
-        mat = [
-                [2, 1, -1, 8],
-                [-3, -1, 2, -11],
-                [-2, 1, 2, -3]
-            ]
+        mat = [[], [], []]  # Placeholder for the augmented matrix
+        print("Input Augmented Matrix:")
+        for i in range(3):
+            row = input(f"Enter row {i+1} (space-separated): ")
+            mat[i] = list(map(float, row.split()))
         result = gauss_jordan(mat)
         result = format_matrix(result)  # Format the matrix values
         print("RREF:")
