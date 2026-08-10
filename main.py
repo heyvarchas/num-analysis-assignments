@@ -29,10 +29,19 @@ def main():
         print("RREF:")
         print_matrix(result)
     elif choice == "2":
-        A = [[2, 1, -1],
-         [-3, -1, 2],
-         [-2, 1, 2]]
-        b = [8, -11, -3]
+        n = int(input("Enter number of variables: "))
+        A = []
+        print("Enter matrix A row by row:")
+        for i in range(n):
+            row = list(map(float, input(f"Row {i+1}: ").split()))
+            A.append(row)
+            if len(row) != n:
+                raise ValueError("Each row must have n elements")
+        print("Enter vector b:")
+        b = list(map(float, input().split()))
+        if len(b) != n:
+            raise ValueError("b must have n elements")
+
         result = gauss_elimination(A, b)
         result = format_matrix(result)
         print("Solution:")
