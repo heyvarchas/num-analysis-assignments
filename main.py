@@ -6,10 +6,11 @@ from gauss_jordan import gauss_jordan
 from gauss_elimination import gauss_elimination
 from LU_decomposition import lu_decomposition
 from QR_decomposition import qr_decomposition
+from bairstow_method import bairstow
 
 def main():
     # I want to create a menu for the user to choose which method they want to use, so I'm doing this below
-    menu = ["1. Gauss Jordan Elimination", "2. Gauss Elimination", "3. LU Decomposition", "4. QR Decomposition"]
+    menu = ["1. Gauss Jordan Elimination", "2. Gauss Elimination", "3. LU Decomposition", "4. QR Decomposition", "5. Bairstow's Method"]
 
     # Now I take the number as input and then perform stuff accordingly
     print("See the list of options below and choose the one you want to use:")
@@ -54,6 +55,12 @@ def main():
         print_matrix(Q)
         print("R:")
         print_matrix(R)
+    elif choice == "5":
+        coeffs = [1, -6, 11, -6]  # x^3 - 6x^2 + 11x - 6
+        roots = bairstow(coeffs[::-1])  # Reverse coefficients for bairstow
+
+        print("\nAll roots:")
+        print_matrix(roots)
     else:
         print("Invalid choice.")
         return
