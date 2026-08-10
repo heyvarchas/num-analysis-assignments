@@ -4,10 +4,11 @@
 from helpers import format_matrix, print_matrix
 from gauss_jordan import gauss_jordan
 from gauss_elimination import gauss_elimination
+from LU_decomposition import lu_decomposition
 
 def main():
     # I want to create a menu for the user to choose which method they want to use, so I'm doing this below
-    menu = ["1. Gauss Jordan Elimination", "2. Gauss Elimination"]
+    menu = ["1. Gauss Jordan Elimination", "2. Gauss Elimination", "3. LU Decomposition"]
 
     # Now I take the number as input and then perform stuff accordingly
     print("See the list of options below and choose the one you want to use:")
@@ -35,6 +36,15 @@ def main():
         result = format_matrix(result)
         print("Solution:")
         print_matrix(result)
+    elif choice == "3":
+        A = [[4, 3], [6, 3]]
+        L, U = lu_decomposition(A)
+        L = format_matrix(L)
+        U = format_matrix(U)
+        print("L:")
+        print_matrix(L)
+        print("U:")
+        print_matrix(U)
     else:
         print("Invalid choice.")
         return
