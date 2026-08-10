@@ -73,7 +73,7 @@ def bairstow(coeffs, r=0.0, s=0.0, tol=1e-6, max_iter=100):
 
     # Reduced polynomial
     new_coeffs = b[2:]
-    print(f"Reduced polynomial: {[round(x,4) for x in new_coeffs]}")
+    print(f"Reduced polynomial: {[round(x,4) for x in new_coeffs][::-1]}")
 
     # Recursive call
     return [root1, root2] + bairstow(new_coeffs, r, s, tol, max_iter)
