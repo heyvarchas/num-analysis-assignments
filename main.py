@@ -56,7 +56,7 @@ def main():
         print("R:")
         print_matrix(R)
     elif choice == "5":
-        coeffs = [1, -6, 11, -6]  # x^3 - 6x^2 + 11x - 6
+        coeffs = [1, -6, 15, -30, 44, -24]  # x^5 - 6x^4 + 15x^3 - 30x^2 + 44x - 24
         roots = bairstow(coeffs[::-1])  # Reverse coefficients for bairstow
 
         print("\nAll roots:")
