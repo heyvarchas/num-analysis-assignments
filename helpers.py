@@ -38,3 +38,44 @@ def print_matrix(matrix):
         for val in row:
             print(f"{val:>6}", end=" ")
         print("]")
+
+def get_input(choice):
+    if choice == "1":
+        mat = [[], [], []]  # Placeholder for the augmented matrix
+        print("Input Augmented Matrix:")
+        for i in range(3):
+            row = input(f"Enter row {i+1} (space-separated): ")
+            mat[i] = list(map(float, row.split()))
+        return mat
+    elif choice == "2":
+        n = int(input("Enter number of variables: "))
+        A = []
+        print("Enter matrix A row by row:")
+        for i in range(n):
+            row = list(map(float, input(f"Row {i+1}: ").split()))
+            A.append(row)
+            if len(row) != n:
+                raise ValueError("Each row must have n elements")
+        print("Enter vector b:")
+        b = list(map(float, input().split()))
+        if len(b) != n:
+            raise ValueError("b must have n elements")
+        return A, b
+    elif choice == "3":
+        n = int(input("Enter the value of n (square matrix): "))
+        print("Enter the matrix A row by row (Space-separated):")
+        A = [list(map(float, input(f"Row {i+1}: ").split())) for i in range(n)]
+        return A
+    elif choice == "4":
+        m = int(input("Enter number of rows: "))
+        n = int(input("Enter number of columns: "))
+        A = []
+        print("Enter the matrix row-wise:")
+        for i in range(m):
+            row = list(map(float, input(f"Row {i+1} (space separated): ").split()))
+            A.append(row)
+        return A
+    elif choice == "5":
+        coeffs_input = input("Enter coefficients of the polynomial (highest degree first, space-separated): ")
+        coeffs = list(map(float, coeffs_input.split()))
+        return coeffs
