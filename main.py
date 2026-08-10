@@ -47,7 +47,9 @@ def main():
         print("Solution:")
         print_matrix(result)
     elif choice == "3":
-        A = [[4, 3], [6, 3]]
+        n = int(input("Enter the value of n (square matrix): "))
+        print("Enter the matrix A row by row (Space-separated):")
+        A = [list(map(float, input(f"Row {i+1}: ").split())) for i in range(n)]
         L, U = lu_decomposition(A)
         L = format_matrix(L)
         U = format_matrix(U)
@@ -56,7 +58,16 @@ def main():
         print("U:")
         print_matrix(U)
     elif choice == "4":
-        A = [[4, 3], [6, 3]]
+        m = int(input("Enter number of rows: "))
+        n = int(input("Enter number of columns: "))
+
+        A = []
+        print("Enter the matrix row-wise:")
+
+        for i in range(m):
+            row = list(map(float, input(f"Row {i+1} (space separated): ").split()))
+            A.append(row)
+            
         Q, R = qr_decomposition(A)
         Q = format_matrix(Q)
         R = format_matrix(R)
