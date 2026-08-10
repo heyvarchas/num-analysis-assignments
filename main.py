@@ -5,10 +5,11 @@ from helpers import format_matrix, print_matrix
 from gauss_jordan import gauss_jordan
 from gauss_elimination import gauss_elimination
 from LU_decomposition import lu_decomposition
+from QR_decomposition import qr_decomposition
 
 def main():
     # I want to create a menu for the user to choose which method they want to use, so I'm doing this below
-    menu = ["1. Gauss Jordan Elimination", "2. Gauss Elimination", "3. LU Decomposition"]
+    menu = ["1. Gauss Jordan Elimination", "2. Gauss Elimination", "3. LU Decomposition", "4. QR Decomposition"]
 
     # Now I take the number as input and then perform stuff accordingly
     print("See the list of options below and choose the one you want to use:")
@@ -16,13 +17,12 @@ def main():
         print(option)
     choice = input("Enter your choice: ")
 
-    mat = [
-        [2, 1, -1, 8],
-        [-3, -1, 2, -11],
-        [-2, 1, 2, -3]
-    ]
-
     if choice == "1":
+        mat = [
+                [2, 1, -1, 8],
+                [-3, -1, 2, -11],
+                [-2, 1, 2, -3]
+            ]
         result = gauss_jordan(mat)
         result = format_matrix(result)  # Format the matrix values
         print("RREF:")
@@ -45,6 +45,15 @@ def main():
         print_matrix(L)
         print("U:")
         print_matrix(U)
+    elif choice == "4":
+        A = [[4, 3], [6, 3]]
+        Q, R = qr_decomposition(A)
+        Q = format_matrix(Q)
+        R = format_matrix(R)
+        print("Q:")
+        print_matrix(Q)
+        print("R:")
+        print_matrix(R)
     else:
         print("Invalid choice.")
         return
