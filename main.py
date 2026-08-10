@@ -1,7 +1,7 @@
 # I'm going to start the file by importing the necessary libraries and functions from other files. 
 # I will import the format_matrix and print_matrix functions from helpers.py, and other functions from their respective files.
 
-from helpers import format_matrix, print_matrix
+from helpers import format_matrix, print_matrix, get_input
 from gauss_jordan import gauss_jordan
 from gauss_elimination import gauss_elimination
 from LU_decomposition import lu_decomposition
@@ -19,37 +19,19 @@ def main():
     choice = input("Enter your choice: ")
 
     if choice == "1":
-        mat = [[], [], []]  # Placeholder for the augmented matrix
-        print("Input Augmented Matrix:")
-        for i in range(3):
-            row = input(f"Enter row {i+1} (space-separated): ")
-            mat[i] = list(map(float, row.split()))
+        mat = get_input(choice)
         result = gauss_jordan(mat)
         result = format_matrix(result)  # Format the matrix values
         print("RREF:")
         print_matrix(result)
     elif choice == "2":
-        n = int(input("Enter number of variables: "))
-        A = []
-        print("Enter matrix A row by row:")
-        for i in range(n):
-            row = list(map(float, input(f"Row {i+1}: ").split()))
-            A.append(row)
-            if len(row) != n:
-                raise ValueError("Each row must have n elements")
-        print("Enter vector b:")
-        b = list(map(float, input().split()))
-        if len(b) != n:
-            raise ValueError("b must have n elements")
-
+        A, b = get_input(choice)
         result = gauss_elimination(A, b)
         result = format_matrix(result)
         print("Solution:")
         print_matrix(result)
     elif choice == "3":
-        n = int(input("Enter the value of n (square matrix): "))
-        print("Enter the matrix A row by row (Space-separated):")
-        A = [list(map(float, input(f"Row {i+1}: ").split())) for i in range(n)]
+        A = get_input(choice)
         L, U = lu_decomposition(A)
         L = format_matrix(L)
         U = format_matrix(U)
@@ -58,16 +40,7 @@ def main():
         print("U:")
         print_matrix(U)
     elif choice == "4":
-        m = int(input("Enter number of rows: "))
-        n = int(input("Enter number of columns: "))
-
-        A = []
-        print("Enter the matrix row-wise:")
-
-        for i in range(m):
-            row = list(map(float, input(f"Row {i+1} (space separated): ").split()))
-            A.append(row)
-
+        A = get_input(choice)
         Q, R = qr_decomposition(A)
         Q = format_matrix(Q)
         R = format_matrix(R)
@@ -76,17 +49,7 @@ def main():
         print("R:")
         print_matrix(R)
     elif choice == "5":
-        n = int(input("Enter degree of polynomial: "))
-    
-        print(f"Enter {n+1} coefficients (highest degree → constant):")
-        print("Example: for x^3 - 6x^2 + 11x - 6 → 1 -6 11 -6")
-        
-        coeffs = list(map(float, input(">>> ").split()))
-
-        if len(coeffs) != n + 1:
-            print("Wrong number of coefficients")
-            return
-        # coeffs = [1, -6, 15, -30, 44, -24]  # x^5 - 6x^4 + 15x^3 - 30x^2 + 44x - 24
+        coeffs = get_input(choice)
         roots = bairstow(coeffs[::-1])  # Reverse coefficients for bairstow
 
         print("\nAll roots:")
